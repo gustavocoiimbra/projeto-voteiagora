@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block uptitle %} Votei, IAgora? Entrar {% endblock %}
+
+<!-- Formulario de login -->
+{% block centered %}
+    <!-- Campo Usuario -->
+    <div class="row g-10 align-items-center">
+        <div class="col-auto">
+          <label for="inputUser" class="col-form-label">Usuário</label>
+        </div>
+        <div class="col-auto">
+          <input type="text" id="inputUser" class="form-control" aria-describedby="passwordHelpInline">
+        </div>
+        <div class="col-auto">
+          <!--span id="passwordHelpInline" class="form-text">
+            
+          </span-->
+        </div>
+    </div>
+    <!-- Campo Senha -->
+    <div class="row g-10 align-items-center">
+        <div class="col-auto">
+          <label for="inputPasswd" class="col-form-label">Senha</label>
+        </div>
+        <div class="col-auto">
+          <input type="password" id="inputPasswd" class="form-control" aria-describedby="passwordHelpInline">
+        </div>
+        <div class="col-auto">
+          <span id="passwordHelpInline" class="form-text">
+             Preferencialmente, entre 8 e 20 caracteres.
+          </span>
+        </div>
+      </div>
+    <!-- Botão Entrar-->
+    <p class="lead">
+        <a href="/search" class="btn btn-lg btn-light fw-bold border-white bg-white">Entrar</a>
+    </p>
+{% endblock %}
