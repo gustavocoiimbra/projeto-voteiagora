@@ -16,11 +16,11 @@ EXEMPLO DE USO DO FLUXO DE TRABALHO:
 Como criar uma issue? 
 https://www.youtube.com/watch?v=WpA2NXdfkNQ
 
-1° Crie um novo branch no repositório remoto : use um branch separado para cada usuário adicionar novos recursos ou resolver problemas do trabalho.
+2° Crie um novo branch no repositório remoto : use um branch separado para cada usuário adicionar novos recursos ou resolver problemas do trabalho.
 
 
-2° Nesta branch criada edite, prepare e faça as alterações de maneira usual sempre fazendo os commits.
+3° Nesta branch criada edite, prepare e faça as alterações de maneira usual sempre fazendo os commits.
 
-3° Enviar branch para o repositório remoto: enviar as modificações do repositório local para o remoto é conveninete para o backup e para que todos possam visualizar as alterações.
+4° Enviar branch para o repositório remoto: enviar as modificações do repositório local para o remoto é conveninete para o backup e para que todos possam visualizar as alterações.
 
-4° Mesclar com a branch principal: ao finalizar as implementações desejadas na branch *feature* é hora de mesclar com o branch *master*
+5° Mesclar com a branch principal: ao finalizar as implementações desejadas na branch *feature* é hora de mesclar com o branch *master*
