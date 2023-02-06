@@ -13,8 +13,8 @@ EXEMPLO DE USO DO FLUXO DE TRABALHO:
 
 1° Crie um novo card (issue) com o nome da tarefa/recurso que será desenvolvido:
 
-Como criar uma issue? 
-https://www.youtube.com/watch?v=WpA2NXdfkNQ
+- Como criar uma issue? 
+- https://www.youtube.com/watch?v=WpA2NXdfkNQ
 
 2° Crie um novo branch no repositório remoto : use um branch separado para cada usuário adicionar novos recursos ou resolver problemas do trabalho.
 
