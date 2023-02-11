@@ -6,11 +6,11 @@
 {% block maintitle1 %} Novo Cadastro {% endblock %}
 <!-- Formulario de cadastro -->
 {% block centered2 %}
-<form method="post">
+<form action='#' method="post">
     <!-- Campo Nome -->
     <div class="form-group">
       <label for="inputName">Nome</label>
-      <input type="text" name="first" class="form-control" id="inputName" placeholder="Entre com seu nome">
+      <input type="text" name="first" class="form-control" id="inputName" placeholder="Entre com seu nome"/>
       <!--small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small-->
     </div>
     <!-- Campo Sobrenome -->
@@ -47,6 +47,12 @@
     <div class="form-group">
       <label for="inputPassword">Senha</label>
       <input type="password" name="pwd" class="form-control" id="inputPassword" placeholder="Crie uma senha">
+      <small id="emailHelp" class="form-text text-muted">Preferencialmente, entre 8 e 20 caracteres</small>
+    </div>
+    <!-- Campo Confirmacao de Senha -->
+    <div class="form-group">
+      <label for="inputPassword">Confirmação de Senha</label>
+      <input type="password" name="pwd2" class="form-control" id="inputPassword2" placeholder="Confirme a sua senha">
       <small id="emailHelp" class="form-text text-muted">Preferencialmente, entre 8 e 20 caracteres</small>
     </div>
     <!--div class="form-check">

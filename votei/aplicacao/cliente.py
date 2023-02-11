@@ -1,10 +1,8 @@
-from aplicacao import app
-from flask import redirect, url_for, render_template, request, session
-from datetime import timedelta
-from user import User
+from aplicacao import app #, db
+from flask import redirect, url_for, render_template, \
+    request, session, flash
+from aplicacao.user import User
 
-app.secret_key = "B16BK3ecidwjMH1IezED"
-app.permanent_session_lifetime = timedelta(minutes=5)
 
 
 @app.route('/')
@@ -24,13 +22,25 @@ def registration():
         state = request.form["state"].upper().strip()
         usr = request.form["usr"].lower().strip()
         pwd = request.form["pwd"]
+        pwd_check = request.form["pwd2"]
         all_var = [first, last, birth, email, state, usr, pwd]
+        errorRegistration = False
         for var in all_var:
             if var == "":
-                warningPhrase = "Você não pode deixar nenhum campo em branco!"
-                return redirect(url_for("warning", variable=warningPhrase))
+                errorRegistration = True
+                flash("Você não pode deixar nenhum campo em branco!")
+                break
+        if pwd != pwd_check:
+            flash("Senhas não coincidem!")
+            errorRegistration = True
+        if errorRegistration:
+            return render_template('registration.html')
+            #warningPhrase = "Você não pode deixar nenhum campo em branco!"
+            #return redirect(url_for("warning", variable=warningPhrase))
+            
         user = User(first, last, usr, pwd, birth, email, gender, state)
         #print(first, last, birth, email, gender, state, usr, pwd)
+        flash("Cadastro Realizado! Faça o login.")
         return redirect(url_for("login"))#, username = user.firstName)
     else:
         return render_template('registration.html')
@@ -42,10 +52,10 @@ def login():
         session.permanent = True
         usr = request.form["usr"]
         pwd = request.form["pwd"]
-        print(usr, pwd)
         if not ( usr == "" or pwd == "" ):
-            print("teste")
             session["user"] = usr
+        else:
+            flash("Você precisa entrar com usuário e senha!")
         return redirect(url_for("search"))
     else:
         return render_template('login.html')
@@ -54,16 +64,14 @@ def login():
 @app.route("/logout")
 def logout():
     session.pop("user", None)
+    flash("Você saiu do sistema!", "info")
     return redirect(url_for("login"))
 
 
 @app.route('/search')
 def search():
     if "user" in session:
-        print("teste2")
-        print(session)
         userlogged = session["user"]
-        print(userlogged)
         return render_template('search.html')
     else:
         if "user" in session:
@@ -78,15 +86,10 @@ def base():
 
 @app.route('/warning/<variable>')
 def warning(variable):
-    print(variable)
+    #print(variable)
     return render_template('warning.html', warningPhrase=variable)
 
 
-@app.route('/empty')
-def empty():
-    return render_template('empty.html')
-
-
-@app.route('/<usr>')
-def user(usr):
-    return f"Olá, {usr}!"
+#@app.route('/<usr>')
+#def user(usr):
+#    return f"Olá, {usr}!"

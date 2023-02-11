@@ -1,4 +1,7 @@
-class User:
+#from aplicacao import db
+
+class User():
+#class User(db.Model):
     """    Classe usuário, projeto votei   """
 
     counter = 0

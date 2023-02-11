@@ -120,6 +120,17 @@
     <div class="mx-auto" style="width: 400px;">
       {% block centered3 %}{% endblock %}
     </div>
+    <div class="mx-auto" style="width: 200px;">
+      {% block centered4 %}
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <!-- {% for msg in messages %} -->
+      <p style="color:rgb(255, 217, 0)">{{msg}}</p>
+      <!-- {% endfor %} -->
+      {% endif %}
+      {% endwith %}
+      {% endblock %}
+    </div>
 
 
   </main>
