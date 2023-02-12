@@ -25,6 +25,7 @@ def registration():
         pwd_check = request.form["pwd2"]
         all_var = [first, last, birth, email, gender, state, usr, pwd]
         errorRegistration = False
+        # Verificando se ha campos em branco
         for var in all_var:
             if var == "":
                 errorRegistration = True
@@ -33,11 +34,21 @@ def registration():
         if pwd != pwd_check:
             flash("Senhas não coincidem!")
             errorRegistration = True
+        objectUser = readData()
+        # Verificando se usuario ja foi cadastrado
+        for i in range(len(objectUser)):
+            if email == objectUser[i].email:
+                flash("E-mail já foi cadastrado!")
+                errorRegistration = True
+                break
+            elif usr == objectUser[i].userName:
+                flash("Nome de usuário já cadastrado!")
+                errorRegistration = True
+                break
         if errorRegistration:
             return render_template('registration.html')
             #warningPhrase = "Você não pode deixar nenhum campo em branco!"
             #return redirect(url_for("warning", variable=warningPhrase))
-
 
         objectUser = readWriteData(first, last, usr, pwd, birth, email, \
                                 gender, state)
@@ -98,6 +109,15 @@ def search():
         if "user" in session:
             return redirec(url_for("search"))
         return redirect(url_for("login"))
+
+@app.route('/aboutus')
+def aboutus():
+    return render_template('aboutus.html')
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 
 @app.route('/base')
