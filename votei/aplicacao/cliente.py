@@ -2,7 +2,7 @@ from aplicacao import app #, db
 from flask import redirect, url_for, render_template, \
     request, session, flash
 from aplicacao.user import User
-
+from aplicacao.dataUsersControl import readWriteData, readData
 
 
 @app.route('/')
@@ -23,7 +23,7 @@ def registration():
         usr = request.form["usr"].lower().strip()
         pwd = request.form["pwd"]
         pwd_check = request.form["pwd2"]
-        all_var = [first, last, birth, email, state, usr, pwd]
+        all_var = [first, last, birth, email, gender, state, usr, pwd]
         errorRegistration = False
         for var in all_var:
             if var == "":
@@ -37,25 +37,46 @@ def registration():
             return render_template('registration.html')
             #warningPhrase = "Você não pode deixar nenhum campo em branco!"
             #return redirect(url_for("warning", variable=warningPhrase))
-            
-        user = User(first, last, usr, pwd, birth, email, gender, state)
-        #print(first, last, birth, email, gender, state, usr, pwd)
+
+
+        objectUser = readWriteData(first, last, usr, pwd, birth, email, \
+                                gender, state)
+              
+
         flash("Cadastro Realizado! Faça o login.")
         return redirect(url_for("login"))#, username = user.firstName)
     else:
         return render_template('registration.html')
 
 
+@app.route('/mydata')
+def mydata():
+    objectUser = readData()
+    for i in range(len(objectUser)):
+        if objectUser[i].userName == str(session["user"]):
+            break
+    print(objectUser[i].userName)
+    return render_template('mydata.html', obj=objectUser[i])
+
 @app.route('/login', methods=["POST", "GET"])
 def login():
     if request.method == "POST":
+        objectUser = readData()
         session.permanent = True
         usr = request.form["usr"]
         pwd = request.form["pwd"]
-        if not ( usr == "" or pwd == "" ):
+        errorUser = True
+        for i in range(len(objectUser)):
+            if objectUser[i].userName == usr :
+                errorUser = False
+                break
+        if not errorUser:
             session["user"] = usr
-        else:
+        elif usr == "" or pwd == "":
             flash("Você precisa entrar com usuário e senha!")
+        else:
+            flash("Usuário inexistente!")
+            
         return redirect(url_for("search"))
     else:
         return render_template('login.html')
