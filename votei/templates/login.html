@@ -3,14 +3,15 @@
 {% block uptitle %} Votei, IAgora? Entrar {% endblock %}
 
 <!-- Formulario de login -->
-{% block centered %}
+{% block centered1 %}
     <!-- Campo Usuario -->
+    <form action="#" method="post">
     <div class="row g-10 align-items-center">
         <div class="col-auto">
           <label for="inputUser" class="col-form-label">Usuário</label>
         </div>
         <div class="col-auto">
-          <input type="text" id="inputUser" class="form-control" aria-describedby="passwordHelpInline">
+          <input type="text" name="usr" id="inputUser" class="form-control" aria-describedby="passwordHelpInline">
         </div>
         <div class="col-auto">
           <!--span id="passwordHelpInline" class="form-text">
@@ -24,7 +25,7 @@
           <label for="inputPasswd" class="col-form-label">Senha</label>
         </div>
         <div class="col-auto">
-          <input type="password" id="inputPasswd" class="form-control" aria-describedby="passwordHelpInline">
+          <input type="password" name="pwd" id="inputPassword" class="form-control" aria-describedby="passwordHelpInline">
         </div>
         <div class="col-auto">
           <span id="passwordHelpInline" class="form-text">
@@ -32,8 +33,11 @@
           </span>
         </div>
       </div>
-    <!-- Botão Entrar-->
-    <p class="lead">
-        <a href="/search" class="btn btn-lg btn-light fw-bold border-white bg-white">Entrar</a>
+    <p class="lead"> 
+      <!-- Botão Entrar-->
+      <input type="submit" value="Entrar" class="btn btn-lg btn-light fw-bold border-white bg-white">
     </p>
+    </form>
+ 
+
 {% endblock %}
