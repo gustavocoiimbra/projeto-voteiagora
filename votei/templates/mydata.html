@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block uptitle %} Votei, IAgora? Meus Dados {% endblock %}
+
+{% block maintitle1 %} Meus Dados {% endblock %}
+
+{% block centered3 %}
+
+<p> Nome/Sobrenome: 
+    {{obj.firstName.title()}} {{obj.lastName.title()}}
+</p>
+<p> Data de Nascimento: {{obj.dateOfBirth}} </p>
+<p> E-mail:  {{obj.email}} </p>
+<p> Gênero: {{obj.gender}}</p>
+<p> Estado:  {{obj.state}}</p>
+<p> Usuário:  {{obj.userName}}</p>
+<p class="lead">
+    <a href="/search" type='button' class="btn btn-primary btn-lg">Voltar</a>
+</p>
+
+{% endblock %}

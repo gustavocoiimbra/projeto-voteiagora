@@ -1,0 +1,36 @@
+0
+fabiano
+caetano de souza
+23/01/1980
+fabiano.souza@discente.ufg.br
+M
+GO
+fabiano.souza
+1234
+1
+alan
+mathison turing
+23/06/1912
+turing@sherbone
+M
+CA
+turing
+1432
+2
+augusta
+ada byron
+27/11/1852
+ada@cambridge
+F
+CA
+loveloce
+3142
+3
+grace
+hooper
+09/12/1906
+grace@yale
+F
+NY
+hooper
+2431

@@ -93,13 +93,13 @@
       <h3 class="float-md-start mb-0">Votei, IAgora?</h3>
       <nav class="nav nav-masthead justify-content-center float-md-end">
         {% if "user" in session %}
-        <a class="nav-link fw-bold py-1 px-2" href="/warning/Meus Dados...">{{session["user"]}}</a>
+        <a class="nav-link fw-bold py-1 px-2" href="/mydata">{{session["user"]}}</a>
         <a class="nav-link fw-bold py-1 px-2" href="/logout"> Sair</a>
         {% else %}
         <a class="nav-link fw-bold py-1 px-2 active" aria-current="page" href="/home">Home</a>
         {% endif %}
-        <a class="nav-link fw-bold py-1 px-2" href="/warning/Sobre nós...">Sobre Nós</a>
-        <a class="nav-link fw-bold py-1 px-2" href="/warning/Contato...">Contato</a>
+        <a class="nav-link fw-bold py-1 px-2" href="/aboutus">Sobre Nós</a>
+        <a class="nav-link fw-bold py-1 px-2" href="/contact">Contato</a>
       </nav>
     </div>
   </header>
@@ -109,8 +109,7 @@
     <p></p>
     <h1>{% block maintitle2 %}{% endblock %}</h1>
     <p class="lead">{% block insert01 %}{% endblock %}</p>
-    <p class="lead">{% block insert02 %}{% endblock %}</p>
-    <p class="lead">{% block insert03 %}{% endblock %}</p>
+    <p class="text-justify">{% block insert02 %}{% endblock %}</p>
     <div class="mx-auto" style="width: 200px;">
       {% block centered1 %}{% endblock %}
     </div>

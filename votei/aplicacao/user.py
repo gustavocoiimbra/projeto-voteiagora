@@ -4,9 +4,10 @@ class User():
 #class User(db.Model):
     """    Classe usuário, projeto votei   """
 
-    counter = 0
+    counter = -1
 
-    def __init__(self, first, last, usr, pwd, birth, email, gender, state):
+    def __init__(self, first="", last="", usr="", pwd="", \
+                 birth="", email="", gender="", state=""):
         User.counter += 1
         self.__id = User.counter
         self.__firstName = first

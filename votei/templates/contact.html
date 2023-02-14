@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block uptitle %} Votei, IAgora? Sobre o projeto {% endblock %}
+
+{% block maintitle1 %}
+<!-- Lupa -->
+Participantes do Projeto Votei, IAgora?
+{% endblock %}
+
+
+{% block insert02 %}
+
+<p> Fabiano Caetano de Souza - fabiano.souza@discente.ufg.br  </p>
+<p> Fernando de Assis Mota - fernando.mota@discente.ufg.br </p>
+<p> Gustavo Coimbra Cavalcante - gustavocoimbra@discente.ufg.br</p>
+<p> Marcelo Henrique Alves - alvesmarcelo@discente.ufg.br</p>
+<p> Maria Eduarda Silva Borba - maria.borba@discente.ufg.br</p>
+
+{% endblock %}
+
+{% block centered2 %}
+{% if "user" in session %}
+<p class="lead">
+    <a href="/search" type='button' class="btn btn-primary btn-lg">Voltar</a>
+</p>
+{% else %}
+<p class="lead">
+    <a href="/home" type='button' class="btn btn-primary btn-lg">Voltar</a>
+</p>
+{% endif %}
+{% endblock %}
