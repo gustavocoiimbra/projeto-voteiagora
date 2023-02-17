@@ -1,16 +1,19 @@
 from aplicacao.user import User
 import os.path
 
+def filePath():
+    if os.path.exists('datausers.txt'):
+        return 'datausers.txt'
+    else:
+        return 'aplicacao/datausers.txt'
+
 def readData():
     allUsers = []
     # Le os dados salvos e armazena em uma lista de objetos
     # (somente uma vez, ao iniciar aplicacao)
     
     # Ler "banco de dados" tipo text
-    if os.path.exists('datausers.txt'):
-        file_path = 'datausers.txt'
-    else:
-        file_path = 'aplicacao/datausers.txt'
+    file_path = filePath()
     with open(file_path,'r') as f:
         allData = f.readlines()
 
@@ -30,6 +33,8 @@ def readData():
     
 
 def writeData(allUsers):
+
+    file_path = filePath()
     # A cada novo cadastro, pega dados do novo objeto usuario 
     # e acrescenta em arquivo 'banco de dados'
     with open(file_path,'r+') as f:
