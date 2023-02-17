@@ -50,10 +50,10 @@ class User():
     @property
     def password(self):
         return self.__password
-
+    
     @password.setter
     def password(self, pwd):
-        self.__pwd = pwd
+        self.__password = pwd
 
     @property
     def dateOfBirth(self):
