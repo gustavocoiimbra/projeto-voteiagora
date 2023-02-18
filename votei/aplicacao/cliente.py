@@ -2,7 +2,8 @@ from aplicacao import app #, db
 from flask import redirect, url_for, render_template, \
     request, session, flash
 from aplicacao.user import User
-from aplicacao.dataUsersControl import readWriteData, readData
+from aplicacao.dataUsersControl import writeData
+from aplicacao import allUsers
 
 
 @app.route('/')
@@ -34,24 +35,23 @@ def registration():
         if pwd != pwd_check:
             flash("Senhas não coincidem!")
             errorRegistration = True
-        objectUser = readData()
+
         # Verificando se usuario ja foi cadastrado
-        for i in range(len(objectUser)):
-            if email == objectUser[i].email:
+        for i in range(len(allUsers)):
+            if email == allUsers[i].email:
                 flash("E-mail já foi cadastrado!")
                 errorRegistration = True
                 break
-            elif usr == objectUser[i].userName:
+            elif usr == allUsers[i].userName:
                 flash("Nome de usuário já cadastrado!")
                 errorRegistration = True
                 break
         if errorRegistration:
             return render_template('registration.html')
-            #warningPhrase = "Você não pode deixar nenhum campo em branco!"
-            #return redirect(url_for("warning", variable=warningPhrase))
 
-        objectUser = readWriteData(first, last, usr, pwd, birth, email, \
-                                gender, state)
+        allUsers.append ( User(first, last, usr, pwd, birth, email, \
+                                gender, state) )
+        writeData(allUsers)
               
 
         flash("Cadastro Realizado! Faça o login.")
@@ -62,33 +62,27 @@ def registration():
 
 @app.route('/mydata')
 def mydata():
-    objectUser = readData()
-    for i in range(len(objectUser)):
-        if objectUser[i].userName == str(session["user"]):
+    for i in range(len(allUsers)):
+        if allUsers[i].userName == str(session["user"]):
             break
-    print(objectUser[i].userName)
-    return render_template('mydata.html', obj=objectUser[i])
+    return render_template('mydata.html', obj=allUsers[i])
+
 
 @app.route('/login', methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-        objectUser = readData()
         session.permanent = True
         usr = request.form["usr"]
         pwd = request.form["pwd"]
-        errorUser = True
-        for i in range(len(objectUser)):
-            if objectUser[i].userName == usr :
-                errorUser = False
-                break
-        if not errorUser:
-            session["user"] = usr
-        elif usr == "" or pwd == "":
+        for i in range(len(allUsers)):
+            if allUsers[i].userName == usr and allUsers[i].password == pwd:
+                session["user"] = usr
+                return redirect(url_for("search"))
+        if usr == "" or pwd == "":
             flash("Você precisa entrar com usuário e senha!")
         else:
-            flash("Usuário inexistente!")
-            
-        return redirect(url_for("search"))
+            flash("Usuário inexistente ou senha incorreta!")
+        return render_template('login.html')
     else:
         return render_template('login.html')
 

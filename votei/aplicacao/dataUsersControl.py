@@ -1,68 +1,55 @@
 from aplicacao.user import User
+import os.path
 
-def readWriteData(first, last, usr, pwd, birth, email, \
-                  gender, state):
-    # Ler "banco de dados" tipo text e atualizar
-    # E' um banco de dados nao muito esperto, pois fica 
-    # relendo e reescrevendo o arquivo a todo tempo
-    with open('aplicacao/datausers.txt','r') as f:
-        allData = f.readlines()
-    # Le o numero de usuarios cadastrados no "banco"
-    #N = int( allData[0] )
-    N = len(allData) // 9 # Sao 9 dados para cada usuario
-    # Cria duas listas para guardar os objetos user e a senha separada
-    objectUser, keepPwd = [], []
-    for i in range(N):
-        objectUser.append(User())
-        objectUser[i].firstName = allData[i*9+1].strip()
-        objectUser[i].lastName = allData[i*9+2].strip()
-        objectUser[i].dateOfBirth = allData[i*9+3].strip()
-        objectUser[i].email = allData[i*9+4].strip()
-        objectUser[i].gender = allData[i*9+5].strip()
-        objectUser[i].state = allData[i*9+6].strip()
-        objectUser[i].userName = allData[i*9+7].strip()
-        objectUser[i].password = allData[i*9+8].strip()
-        keepPwd.append(allData[i*9+8].strip())
-    # usuario logado
-    N += 1
-    objectUser.append( User(first, last, usr, pwd, birth, email, \
-                            gender, state) )
-    keepPwd.append(pwd)
-    # Limpa arquivo
-    with open('aplicacao/datausers.txt','r+') as f:
-        f.truncate(0)
-    # Escreve de volta
-    with open('aplicacao/datausers.txt','w') as f:
-        for i in range(N):
-            f.write(f"{objectUser[i].id}\n")
-            f.write(f"{objectUser[i].firstName}\n")
-            f.write(f"{objectUser[i].lastName}\n")
-            f.write(f"{objectUser[i].dateOfBirth}\n")
-            f.write(f"{objectUser[i].email}\n")
-            f.write(f"{objectUser[i].gender}\n")
-            f.write(f"{objectUser[i].state}\n")
-            f.write(f"{objectUser[i].userName}\n")
-            f.write(f"{keepPwd[i]}\n")
-
+def filePath():
+    if os.path.exists('datausers.txt'):
+        return 'datausers.txt'
+    else:
+        return 'aplicacao/datausers.txt'
 
 def readData():
-    # Ler "banco de dados" tipo text
-    with open('aplicacao/datausers.txt','r') as f:
-        allData = f.readlines()
-    # Le o numero de usuarios cadastrados no "banco"
-    #N = int( allData[0] )
-    N = len(allData) // 9 # Sao 9 dados para cada usuario
-    # Cria duas listas para guardar os objetos user e a senha separada
-    objectUser = []
-    for i in range(N):
-        objectUser.append(User())
-        objectUser[i].firstName = allData[i*9+1].strip()
-        objectUser[i].lastName = allData[i*9+2].strip()
-        objectUser[i].dateOfBirth = allData[i*9+3].strip()
-        objectUser[i].email = allData[i*9+4].strip()
-        objectUser[i].gender = allData[i*9+5].strip()
-        objectUser[i].state = allData[i*9+6].strip()
-        objectUser[i].userName = allData[i*9+7].strip()
-        objectUser[i].password = allData[i*9+8].strip()
+    allUsers = []
+    # Le os dados salvos e armazena em uma lista de objetos
+    # (somente uma vez, ao iniciar aplicacao)
     
-    return objectUser
+    # Ler "banco de dados" tipo text
+    file_path = filePath()
+    with open(file_path,'r') as f:
+        allData = f.readlines()
+
+    # Le o numero de usuarios cadastrados no "banco"
+    N = len(allData) // 9 # Sao 9 dados para cada usuario
+    for i in range(N):
+        allUsers.append(User())
+        allUsers[i].firstName = allData[i*9+1].strip()
+        allUsers[i].lastName = allData[i*9+2].strip()
+        allUsers[i].dateOfBirth = allData[i*9+3].strip()
+        allUsers[i].email = allData[i*9+4].strip()
+        allUsers[i].gender = allData[i*9+5].strip()
+        allUsers[i].state = allData[i*9+6].strip()
+        allUsers[i].userName = allData[i*9+7].strip()
+        allUsers[i].password = allData[i*9+8].strip()
+    return allUsers
+    
+
+def writeData(allUsers):
+
+    file_path = filePath()
+    # A cada novo cadastro, pega dados do novo objeto usuario 
+    # e acrescenta em arquivo 'banco de dados'
+    with open(file_path,'r+') as f:
+        f.truncate(0)   # Limpa arquivo
+    # Escreve de volta
+    with open(file_path,'w') as f:
+        for i in range( len(allUsers) ):
+            f.write(f"{allUsers[i].id}\n")
+            f.write(f"{allUsers[i].firstName}\n")
+            f.write(f"{allUsers[i].lastName}\n")
+            f.write(f"{allUsers[i].dateOfBirth}\n")
+            f.write(f"{allUsers[i].email}\n")
+            f.write(f"{allUsers[i].gender}\n")
+            f.write(f"{allUsers[i].state}\n")
+            f.write(f"{allUsers[i].userName}\n")
+            f.write(f"{allUsers[i].password}\n")
+
+
