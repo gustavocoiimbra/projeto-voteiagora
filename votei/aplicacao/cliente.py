@@ -4,6 +4,7 @@ from flask import redirect, url_for, render_template, \
 from aplicacao.user import User
 from aplicacao.dataUsersControl import writeData
 from aplicacao import allUsers
+from aplicacao import allCandidatos
 
 
 @app.route('/')
@@ -96,16 +97,18 @@ def logout():
 
 @app.route('/search', methods =["GET"] )
 def search():
-#   if "user" in session:
-#      userlogged = session["user"]
-#        pass
-#    else:
-#        if "user" in session:
-#            return redirect(url_for("search"))
-#        return redirect(url_for("login"))
     if request.method == "GET":
         session.permanent = True
         return render_template('search.html')
+
+@app.route('/candidatos', methods =["GET"] )
+def candidato():
+    if request.method == "GET":
+        session.permanent = True
+        for i in range(len(allCandidatos)):
+            if allCandidatos[i].name == buscando:
+                break
+            return render_template('candidato.html')
 
 @app.route('/aboutus')
 def aboutus():

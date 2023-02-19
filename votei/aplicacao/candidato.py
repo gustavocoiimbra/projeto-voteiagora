@@ -36,6 +36,10 @@ class Candidato():
     @property
     def estado(self):
         return self.__estado
+    
+    @estado.setter
+    def estado(self, estado):
+        self.__estado
 
     @property
     def partido(self):
