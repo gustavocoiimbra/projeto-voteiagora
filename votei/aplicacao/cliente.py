@@ -77,7 +77,7 @@ def login():
         for i in range(len(allUsers)):
             if allUsers[i].userName == usr and allUsers[i].password == pwd:
                 session["user"] = usr
-                return redirect(url_for("search"))
+                return render_template("search.html")
         if usr == "" or pwd == "":
             flash("Você precisa entrar com usuário e senha!")
         else:
@@ -105,7 +105,6 @@ def search():
 #        return redirect(url_for("login"))
     if request.method == "GET":
         session.permanent = True
-        buscando = request.form["buscando"]
         return render_template('search.html')
 
 @app.route('/aboutus')
