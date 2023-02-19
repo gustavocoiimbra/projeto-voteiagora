@@ -95,20 +95,22 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route('/search', methods =["GET"] )
+@app.route('/search', methods =["POST", "GET"] )
 def search():
-    if request.method == "GET":
+    if request.method == "POST":
         session.permanent = True
+        buscando = request.form["buscando"]
+        for i in range(len(allCandidatos)):
+            if allCandidatos[i].name.lower() == buscando.lower():
+                return redirect(url_for("candidato", idCandidato = i))
+        flash("Candidato Inexistente!")
+        return render_template('search.html')
+    else:
         return render_template('search.html')
 
-@app.route('/candidatos', methods =["GET"] )
+@app.route('/candidato/<idCandidato>', methods =["GET"] )
 def candidato():
-    if request.method == "GET":
-        session.permanent = True
-        for i in range(len(allCandidatos)):
-            if allCandidatos[i].name == buscando:
-                break
-            return render_template('candidato.html')
+        return render_template('candidato.html')
 
 @app.route('/aboutus')
 def aboutus():
