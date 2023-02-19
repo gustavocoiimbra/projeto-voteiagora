@@ -7,7 +7,7 @@ def filePath():
     else:
         return 'projeto-voteiagora/votei/aplicacao/datacandidatos.txt'
 
-def readData():
+def readDataC():
     allCandidatos = []
     # Le os dados salvos e armazena em uma lista de objetos
     # (somente uma vez, ao iniciar aplicacao)
