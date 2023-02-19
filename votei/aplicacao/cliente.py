@@ -94,15 +94,19 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route('/search')
+@app.route('/search', methods =["GET"] )
 def search():
-    if "user" in session:
-        userlogged = session["user"]
+#   if "user" in session:
+#      userlogged = session["user"]
+#        pass
+#    else:
+#        if "user" in session:
+#            return redirect(url_for("search"))
+#        return redirect(url_for("login"))
+    if request.method == "GET":
+        session.permanent = True
+        buscando = request.form["buscando"]
         return render_template('search.html')
-    else:
-        if "user" in session:
-            return redirec(url_for("search"))
-        return redirect(url_for("login"))
 
 @app.route('/aboutus')
 def aboutus():
