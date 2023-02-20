@@ -77,7 +77,7 @@ def login():
         for i in range(len(allUsers)):
             if allUsers[i].userName == usr and allUsers[i].password == pwd:
                 session["user"] = usr
-                return render_template("search.html")
+                return redirect(url_for("search"))
         if usr == "" or pwd == "":
             flash("Você precisa entrar com usuário e senha!")
         else:
@@ -101,25 +101,37 @@ def search():
         buscando = request.form["buscando"]
         for i in range(len(allCandidatos)):
             if allCandidatos[i].name.lower() == buscando.lower():
-                return redirect(url_for("candidato", idCandidato=i))
+                return redirect(url_for("resultados", idCandidato=i))
         flash("Candidato Inexistente!")
         return render_template('search.html')
     else:
         return render_template('search.html')
 
-@app.route('/candidato/<idCandidato>', methods=["GET"])
-def candidato(idCandidato):
-    obj = {
-        'name': 'Luiz',
-        'partido': 'PSL',
-        'cargo': 'Deputado Estadual',
-        'inicioMandato': '11/10/2021',
-        'fimMandato': '01/01/2023',
-        'estado': 'Goiás',
-        'propostasLegs': 'recebe um objeto com as propostas',
-    }
+@app.route('/resultados/<idCandidato>', methods=["GET"])
+def resultados(idCandidato):
 
-    return render_template('candidato.html', obj=obj)
+    obj = ['Candidato X', 'Candidato Y', 'Candidato Z']
+
+    return render_template('resultados.html', obj=obj)
+
+@app.route('/candidato/<nome>', methods=["GET"])
+def candidato(nome):
+    if request.method == "GET":
+
+        obj = {
+            'name': 'Lucas',
+            'partido': 'PSL',
+            'cargo': 'Deputado Estadual',
+            'inicioMandato': '12/11/2011',
+            'fimMandato': '12/22/34454',
+            'estado': 'Goiás',
+            'propostasLegs': 'aqui um objeto com as proposras'
+        }
+
+        return render_template('candidato.html', obj=obj)
+
+    else:
+        redirect(url_for())
 
 @app.route('/aboutus')
 def aboutus():
