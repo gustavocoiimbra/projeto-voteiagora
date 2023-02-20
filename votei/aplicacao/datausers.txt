@@ -8,6 +8,42 @@ GO
 fabiano.souza
 1234
 1
+maria eduarda
+silva borba
+01/01/2003
+maria.borba@discente.ufg.br
+F
+GO
+maria.borba
+1234
+2
+marcelo henrique
+alves
+01/01/2003
+alvesmarcelo@discente.ufg.br
+M
+GO
+alvesmarcelo
+1234
+3
+gustavo
+coimbra cavalcante
+01/01/2003
+gustavocoimbra@discente.ufg.br
+M
+GO
+gustavocoimbra
+1234
+4
+fernando
+de assis mota
+01/01/2003
+fernando.mota@discente.ufg.br
+M
+GO
+fernando.mota
+1234
+5
 alan
 mathison turing
 23/06/1912
@@ -16,7 +52,7 @@ M
 CA
 turing
 1432
-2
+6
 augusta
 ada byron
 27/11/1852
@@ -25,7 +61,7 @@ F
 CA
 loveloce
 3142
-3
+7
 grace
 hooper
 09/12/1906
@@ -34,7 +70,7 @@ F
 NY
 hooper
 2431
-4
+8
 lucaas
 souza
 02/03/2000
