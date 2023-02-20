@@ -38,6 +38,7 @@ def registration():
             errorRegistration = True
 
         # Verificando se usuario ja foi cadastrado
+        print(allUsers)
         for i in range(len(allUsers)):
             if email == allUsers[i].email:
                 flash("E-mail já foi cadastrado!")
@@ -50,12 +51,12 @@ def registration():
         if errorRegistration:
             return render_template('registration.html')
 
-        allUsers.append ( User(first, last, usr, pwd, birth, email, \
-                                gender, state) )
+        allUsers.append(User(first, last, usr, pwd, birth, email, \
+                             gender, state))
         writeData(allUsers)
 
         flash("Cadastro Realizado! Faça o login.")
-        return redirect(url_for("login"))#, username = user.firstName)
+        return redirect(url_for("login"))  # , username = user.firstName)
     else:
         return render_template('registration.html')
 
@@ -99,61 +100,60 @@ def search():
     if request.method == "POST":
         session.permanent = True
         buscando = request.form["buscando"]
-        for i in range(len(allCandidatos)):
-            if allCandidatos[i].name.lower() == buscando.lower():
-                return redirect(url_for("resultados", idCandidato=i))
-        flash("Candidato Inexistente!")
+        if buscando != "":
+            return redirect(url_for("resultados"))
+        flash("Digite o nome do candidato!")
         return render_template('search.html')
     else:
         return render_template('search.html')
 
-@app.route('/resultados/<idCandidato>', methods=["GET"])
-def resultados(idCandidato):
 
+@app.route('/resultados', methods=["GET"])
+def resultados():
+
+    # Lista com os candidatos que foram encontrados
     obj = ['Candidato X', 'Candidato Y', 'Candidato Z']
 
     return render_template('resultados.html', obj=obj)
 
+
 @app.route('/candidato/<nome>', methods=["GET"])
 def candidato(nome):
-    if request.method == "GET":
 
-        obj = {
-            'name': 'Lucas',
-            'partido': 'PSL',
-            'cargo': 'Deputado Estadual',
-            'inicioMandato': '12/11/2011',
-            'fimMandato': '12/22/34454',
-            'estado': 'Goiás',
-            'propostasLegs': 'aqui um objeto com as proposras'
-        }
+    for i in range(len(allCandidatos)):
+        if allCandidatos[i].name.lower() == nome.lower():
+            obj = {
+                'name': allCandidatos[i].name,
+                'partido': allCandidatos[i].partido,
+                'cargo': allCandidatos[i].cargo,
+                'inicioMandato': allCandidatos[i].inicioMandato,
+                'fimMandato': allCandidatos[i].fimMandato,
+                'estado': allCandidatos[i].estado,
+                'propostasLegs': allCandidatos[i].propostasLegs
+            }
+            return render_template('candidato.html', obj=obj)
 
-        return render_template('candidato.html', obj=obj)
 
-    else:
-        redirect(url_for())
-
-@app.route('/aboutus')
+@app.route('/aboutus', methods=["GET"])
 def aboutus():
     return render_template('aboutus.html')
 
 
-@app.route('/contact')
+@app.route('/contact', methods=["GET"])
 def contact():
     return render_template('contact.html')
 
 
-@app.route('/base')
+@app.route('/base', methods=["GET"])
 def base():
     return render_template('base.html')
 
 
-@app.route('/warning/<variable>')
+@app.route('/warning/<variable>', methods=["GET"])
 def warning(variable):
-    #print(variable)
+    # print(variable)
     return render_template('warning.html', warningPhrase=variable)
 
-
-#@app.route('/<usr>')
-#def user(usr):
+# @app.route('/<usr>')
+# def user(usr):
 #    return f"Olá, {usr}!"

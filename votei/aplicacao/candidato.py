@@ -1,7 +1,7 @@
 class Candidato():
     """    Classe candidato, projeto votei   """
     counter = -1
-    def __init__(self, name="", cargo="", estado="", partido="", \
+    def __init__(self, name="", cargo="", estado="", partido="",
                  inicio="", fim="", propostas=""):
         Candidato.counter += 1
         self.__id = Candidato.counter
@@ -39,7 +39,7 @@ class Candidato():
     
     @estado.setter
     def estado(self, estado):
-        self.__estado
+        self.__estado = estado
 
     @property
     def partido(self):
