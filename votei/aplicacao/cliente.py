@@ -1,9 +1,10 @@
-from aplicacao import app #, db
+from aplicacao import app
 from flask import redirect, url_for, render_template, \
     request, session, flash
 from aplicacao.user import User
 from aplicacao.dataUsersControl import writeData
 from aplicacao import allUsers
+from aplicacao import allCandidatos
 
 
 @app.route('/')
@@ -52,7 +53,6 @@ def registration():
         allUsers.append ( User(first, last, usr, pwd, birth, email, \
                                 gender, state) )
         writeData(allUsers)
-              
 
         flash("Cadastro Realizado! Faça o login.")
         return redirect(url_for("login"))#, username = user.firstName)
@@ -94,15 +94,44 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route('/search')
+@app.route('/search', methods=["POST", "GET"])
 def search():
-    if "user" in session:
-        userlogged = session["user"]
+    if request.method == "POST":
+        session.permanent = True
+        buscando = request.form["buscando"]
+        for i in range(len(allCandidatos)):
+            if allCandidatos[i].name.lower() == buscando.lower():
+                return redirect(url_for("resultados", idCandidato=i))
+        flash("Candidato Inexistente!")
         return render_template('search.html')
     else:
-        if "user" in session:
-            return redirec(url_for("search"))
-        return redirect(url_for("login"))
+        return render_template('search.html')
+
+@app.route('/resultados/<idCandidato>', methods=["GET"])
+def resultados(idCandidato):
+
+    obj = ['Candidato X', 'Candidato Y', 'Candidato Z']
+
+    return render_template('resultados.html', obj=obj)
+
+@app.route('/candidato/<nome>', methods=["GET"])
+def candidato(nome):
+    if request.method == "GET":
+
+        obj = {
+            'name': 'Lucas',
+            'partido': 'PSL',
+            'cargo': 'Deputado Estadual',
+            'inicioMandato': '12/11/2011',
+            'fimMandato': '12/22/34454',
+            'estado': 'Goiás',
+            'propostasLegs': 'aqui um objeto com as proposras'
+        }
+
+        return render_template('candidato.html', obj=obj)
+
+    else:
+        redirect(url_for())
 
 @app.route('/aboutus')
 def aboutus():

@@ -1,0 +1,26 @@
+0
+Candidato X
+Deputado Federal
+Paraná
+PAmarelo - PA
+01/01/2023
+30/12/2026
+Pellentesque tristique tortor quis tristique rutrum. Donec elementum eu urna sed fermentum. Nunc sapien felis, finibus vitae eros quis, maximus commodo lorem. Donec dictum tellus condimentum, porta tellus eget, tristique est
+1
+Candidato Y
+Deputado Federal
+Goiás
+PRoxo
+01/01/2023
+30/12/2026
+Pellentesque commodo venenatis nulla, eu gravida purus viverra venenatis. Quisque in dolor vel ipsum maximus viverra. Duis finibus sollicitudin dui, ac imperdiet dui. Sed aliquet metus ex, tempor dignissim urna elementum non. Proin id nibh consequat, ullamcorper sapien non, hendrerit tortor. 
+2
+Candidato Z
+Deputada Federal
+Goiás
+PRosa
+01/01/2023
+30/12/2026
+Nunc ornare congue metus ut feugiat. Sed laoreet leo vitae est dapibus suscipit. In imperdiet sagittis nisi at congue. Nunc eget magna semper, gravida arcu id, ultrices lacus. Quisque aliquet, augue non euismod imperdiet, dolor nisl euismod leo, id gravida magna risus nec eros. 
+
+

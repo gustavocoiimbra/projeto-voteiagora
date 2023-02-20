@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block uptitle %} Votei, IAgora? Canditato {% endblock %}
+
+{% block maintitle1 %} {{ obj.name }} {% endblock %}
+
+{% block centered3 %}
+
+<p> Nome/Partido: 
+    {{obj.name.title()}} - {{obj.partido.title()}}
+</p>
+<p> Cargo Parlamentar: {{obj.cargo}} </p>
+<p> Início do Mandato:  {{obj.inicioMandato}} </p>
+<p> Fim do Mandato: {{obj.fimMandato}}</p>
+<p> Estado do Candidato:  {{obj.estado}}</p>
+<p> Propostas Legislativas:  {{obj.propostasLegs}}</p>
+<p class="lead">
+    <a href="/search" type='button' class="btn btn-primary btn-lg">Voltar</a>
+</p>
+
+
+{% endblock %}

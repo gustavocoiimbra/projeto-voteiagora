@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block uptitle %} Votei, IAgora? {% endblock %}
+
+    {% block maintitle1 %} Resultados {% endblock %}
+
+    {% block centered2 %}
+
+        {% for x in obj %}
+            <form>
+            <p> {{ x }}</p>
+            <a href="/candidato/{{ x }}">ver candidato</a>
+            </form>
+
+        {% endfor %}
+
+        <p class="lead">
+            <a href="/home" type="button" class="btn btn-primary btn-lg">Menu Principal</a>
+            <a href="/search" type='button' class="btn btn-primary btn-lg">Voltar</a>
+        </p>
+
+    {% endblock %}
