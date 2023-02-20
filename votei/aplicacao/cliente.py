@@ -1,4 +1,4 @@
-from aplicacao import app #, db
+from aplicacao import app
 from flask import redirect, url_for, render_template, \
     request, session, flash
 from aplicacao.user import User
@@ -53,7 +53,6 @@ def registration():
         allUsers.append ( User(first, last, usr, pwd, birth, email, \
                                 gender, state) )
         writeData(allUsers)
-              
 
         flash("Cadastro Realizado! Faça o login.")
         return redirect(url_for("login"))#, username = user.firstName)
@@ -95,22 +94,32 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route('/search', methods =["POST", "GET"] )
+@app.route('/search', methods=["POST", "GET"])
 def search():
     if request.method == "POST":
         session.permanent = True
         buscando = request.form["buscando"]
         for i in range(len(allCandidatos)):
             if allCandidatos[i].name.lower() == buscando.lower():
-                return redirect(url_for("candidato", idCandidato = i))
+                return redirect(url_for("candidato", idCandidato=i))
         flash("Candidato Inexistente!")
         return render_template('search.html')
     else:
         return render_template('search.html')
 
-@app.route('/candidato/<idCandidato>', methods =["GET"] )
-def candidato():
-        return render_template('candidato.html')
+@app.route('/candidato/<idCandidato>', methods=["GET"])
+def candidato(idCandidato):
+    obj = {
+        'name': 'Luiz',
+        'partido': 'PSL',
+        'cargo': 'Deputado Estadual',
+        'inicioMandato': '11/10/2021',
+        'fimMandato': '01/01/2023',
+        'estado': 'Goiás',
+        'propostasLegs': 'recebe um objeto com as propostas',
+    }
+
+    return render_template('candidato.html', obj=obj)
 
 @app.route('/aboutus')
 def aboutus():

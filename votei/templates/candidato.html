@@ -2,12 +2,12 @@
 
 {% block uptitle %} Votei, IAgora? Canditato {% endblock %}
 
-{% block maintitle1 %} Meus Dados {% endblock %}
+{% block maintitle1 %} {{ obj.name }} {% endblock %}
 
 {% block centered3 %}
 
 <p> Nome/Partido: 
-    {{obj.name.title()}} {{obj.partido.title()}}
+    {{obj.name.title()}} - {{obj.partido.title()}}
 </p>
 <p> Cargo Parlamentar: {{obj.cargo}} </p>
 <p> Início do Mandato:  {{obj.inicioMandato}} </p>
