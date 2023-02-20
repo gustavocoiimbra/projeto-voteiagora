@@ -5,7 +5,7 @@ def filePath():
     if os.path.exists('datausers.txt'):
         return 'datausers.txt'
     else:
-        return 'projeto-voteiagora/votei/aplicacao/datausers.txt'
+        return 'votei/aplicacao/datausers.txt'
 
 def readData():
     allUsers = []
