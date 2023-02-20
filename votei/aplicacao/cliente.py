@@ -38,7 +38,6 @@ def registration():
             errorRegistration = True
 
         # Verificando se usuario ja foi cadastrado
-        print(allUsers)
         for i in range(len(allUsers)):
             if email == allUsers[i].email:
                 flash("E-mail já foi cadastrado!")
@@ -146,7 +145,7 @@ def contact():
 
 @app.route('/base', methods=["GET"])
 def base():
-    return render_template('base.html')
+    return render_template ('base.html')
 
 
 @app.route('/warning/<variable>', methods=["GET"])
