@@ -51,5 +51,3 @@ def writeData(allUsers):
             f.write(f"{allUsers[i].state}\n")
             f.write(f"{allUsers[i].userName}\n")
             f.write(f"{allUsers[i].password}\n")
-
-
