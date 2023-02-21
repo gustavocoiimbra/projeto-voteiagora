@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed36308f-f519-4021-b9d5-565a777703a7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/votei/templates/myspace.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/votei/aplicacao/cliente.py" beforeDir="false" afterPath="$PROJECT_DIR$/votei/aplicacao/cliente.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/votei/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/votei/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/votei/templates/resultados.html" beforeDir="false" afterPath="$PROJECT_DIR$/votei/templates/resultados.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/votei/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/votei/templates/search.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +189,7 @@
       <workItem from="1676828240546" duration="16509000" />
       <workItem from="1676893628170" duration="2006000" />
       <workItem from="1676906826846" duration="8378000" />
-      <workItem from="1676916726574" duration="16187000" />
+      <workItem from="1676916726574" duration="19140000" />
     </task>
     <servers />
   </component>
@@ -207,7 +209,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/projeto_voteiagora$parlamentar.coverage" NAME="parlamentar Coverage Results" MODIFIED="1676920427707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/votei" />
-    <SUITE FILE_PATH="coverage/projeto_voteiagora$main.coverage" NAME="main Coverage Results" MODIFIED="1676933148650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/votei" />
+    <SUITE FILE_PATH="coverage/projeto_voteiagora$main.coverage" NAME="main Coverage Results" MODIFIED="1676938041863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/votei" />
     <SUITE FILE_PATH="coverage/projeto_voteiagora$proposta.coverage" NAME="proposta Coverage Results" MODIFIED="1676745659469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/votei" />
     <SUITE FILE_PATH="coverage/projeto_voteiagora$cliente.coverage" NAME="cliente Coverage Results" MODIFIED="1676405867279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/votei/aplicacao" />
   </component>
