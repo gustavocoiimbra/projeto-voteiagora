@@ -1,0 +1,87 @@
+{% extends "baseC.html" %}
+
+{% block titulocentral %}Resultados da Pesquisa{% endblock %}
+
+{% block textocentral %} 
+Verifique abaixo os resultados da sua pesquisa*, 
+escolha os políticos que deseja acompanhar a trajetória. 
+Só é possível acompanhar os políticos na legislatura atual (2023-2027) e,
+por enquanto, a pesquisa só consulta da base de dados da Câmara dos Deputados.
+{% endblock %}
+
+{% block principal %}
+<h2 class="display-6 text-center mb-4">Legislatura Atual </h2>
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+{% for i in range(n1) %}
+  <div class="col">
+    <div class="card mb-4 rounded-3 shadow-sm">
+      <div class="card-header py-3">
+        <h4 class="my-0 fw-normal">{{legAtual[i]["nome"]}}</h4>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title pricing-card-title">Nome Civil: <small class="text-muted fw-light"> {{legAtual[i]["nomeCivil"]}}</small></h5>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Deputado Federal</li>
+          <li>Sexo: {{legAtual[i]["siglaSexo"]}}</li>
+          <li>Nascimento: {{legAtual[i]["dataNascimento"]}}</li>
+          <li>Naturalidade: {{legAtual[i]["municipioNascimento"]}} - {{legAtual[i]["ufNascimento"]}}</li>
+          <!--{% if legAtual[i]["urlRedeSocial"] != [] %}
+          {% for url in legAtual[i]["urlRedeSocial"] %}
+          <li>{{url}}</li>
+          {% endfor %}
+          {% endif %}-->
+        </ul>
+        <!--button type="button" class="w-100 btn btn-lg btn-success">Seguir</button-->
+        <!--form action="{{url_for('mydata')}}" method="post"-->
+          <input type="submit" name="follow" value="Seguir" class="w-100 btn btn-lg btn-success">
+        <!--/form-->
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+<p class="lead">
+  <a href="/search" type='button' class="btn btn-primary btn-lg">Voltar</a>
+</p>
+
+
+<h2 class="display-6 text-center mb-4">Legislaturas Anteriores </h2>
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+{% for i in range(n2) %}
+  <div class="col">
+    <div class="card mb-4 rounded-3 shadow-sm">
+      <div class="card-header py-3">
+        <h4 class="my-0 fw-normal">{{legPassa[i]["nome"]}} </h4>
+      </div>
+      <div class="card-body">
+        <h5>Nome Civil: <small class="text-muted fw-light">{{legPassa[i]["nomeCivil"]}}</small></h5>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Deputado Federal</li>
+          <li>Sexo: {{legPassa[i]["siglaSexo"]}}</li>
+          <li>Nascimento: {{legPassa[i]["dataNascimento"]}}</li>
+          <li>Naturalidade: {{legPassa[i]["municipioNascimento"]}} - {{legPassa[i]["ufNascimento"]}}</li>
+          {% if legPassa[i]["dataFalecimento"] != [] %}
+          <li>{{legPassa[i]["dataFalecimento"]}}</li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+<p class="lead">
+  <a href="/search" type='button' class="btn btn-primary btn-lg">Voltar</a>
+</p>
+
+{% block rodape %}
+*A pesquisa mostra resultados exatos, isto é, quando
+a frase de busca é equivalente ao nome de algum políticos
+na base de dados, e resultados aproximados, quando algum 
+termo da frase de busca é encontrado nos dados. Quando a 
+frase de busca retorna muitos resultados, são mostrados 
+apenas os nove mais prováveis.
+{% endblock %}
+
+{% endblock %}

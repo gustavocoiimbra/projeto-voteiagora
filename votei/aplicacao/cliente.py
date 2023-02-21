@@ -5,7 +5,7 @@ from aplicacao.user import User
 from aplicacao.dataUsersControl import writeData
 from aplicacao import allUsers
 from aplicacao import allCandidatos
-
+from aplicacao.scrapyingCandidatos import loadCandidatos, searchPolitico
 
 @app.route('/')
 @app.route('/home')
@@ -96,14 +96,22 @@ def logout():
 
 @app.route('/search', methods=["POST", "GET"])
 def search():
+    deputados = loadCandidatos()
     if request.method == "POST":
         session.permanent = True
         buscando = request.form["buscando"]
-        for i in range(len(allCandidatos)):
-            if allCandidatos[i].name.lower() == buscando.lower():
-                return redirect(url_for("resultados", idCandidato=i))
-        flash("Candidato Inexistente!")
-        return render_template('search.html')
+        legAtual, legPassa = searchPolitico(deputados, buscando)
+        if len(legAtual) == 0 and len(legPassa) == 0:
+            flash("Nenhum político encontrado na pesquisa... Tente Novamente!")
+            return render_template('search.html')
+        else:
+            return redirect(url_for("resultsCandidatos", buscando=buscando))
+                                
+        #for i in range(len(allCandidatos)):
+        #    if allCandidatos[i].name.lower() == buscando.lower():
+        #        return redirect(url_for("resultados", idCandidato=i))
+        #flash("Candidato Inexistente!")
+        #return render_template('search.html')
     else:
         return render_template('search.html')
 
@@ -113,6 +121,21 @@ def resultados(idCandidato):
     obj = ['Candidato X', 'Candidato Y', 'Candidato Z']
 
     return render_template('resultados.html', obj=obj)
+
+
+@app.route('/resultsCandidatos/<buscando>', methods=["POST", "GET"])
+def resultsCandidatos(buscando):
+    deputados = loadCandidatos()
+    legAtual, legPassa = searchPolitico(deputados, buscando)
+    n1, n2 = len(legAtual), len(legPassa)
+    if request.method == 'POST':
+        pass
+    #    if request.form['follow'] == 'Seguir':
+    #        return "???""
+    else: 
+        return render_template('resultsCandidatos.html', \
+                           legAtual=legAtual, legPassa=legPassa, n1=n1, n2=n2)
+
 
 @app.route('/candidato/<nome>', methods=["GET"])
 def candidato(nome):
@@ -148,12 +171,12 @@ def base():
     return render_template('base.html')
 
 
+@app.route('/baseC')
+def baseC():
+    return render_template('baseC.html')
+
+
 @app.route('/warning/<variable>')
 def warning(variable):
     #print(variable)
     return render_template('warning.html', warningPhrase=variable)
-
-
-#@app.route('/<usr>')
-#def user(usr):
-#    return f"Olá, {usr}!"
