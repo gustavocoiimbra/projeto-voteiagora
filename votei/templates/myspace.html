@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block uptitle %} Votei, IAgora? {% endblock %}
+
+    {% block maintitle1 %} Meus Candidatos {% endblock %}
+
+    {% block centered2 %}
+
+        {% for cand in obj %}
+            <form>
+            <p> {{ cand }}</p>
+            <a href="/candidato/{{ cand }}">ver candidato</a>
+            </form>
+
+        {% endfor %}
+
+        <p class="lead">
+            <a href="/search" type='button' class="btn btn-primary btn-lg">Voltar</a>
+        </p>
+
+    {% endblock %}

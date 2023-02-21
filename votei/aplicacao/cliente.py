@@ -116,6 +116,14 @@ def resultados():
     return render_template('resultados.html', obj=obj)
 
 
+@app.route('/myspace', methods=["GET"])
+def myspace():
+
+    # Lista com os candidatos favoritos do usuário
+    obj = ['Candidato X', 'Candidato Y', 'Candidato Z']
+    return render_template('myspace.html', obj=obj)
+
+
 @app.route('/candidato/<nome>', methods=["GET"])
 def candidato(nome):
 
@@ -145,7 +153,7 @@ def contact():
 
 @app.route('/base', methods=["GET"])
 def base():
-    return render_template ('base.html')
+    return render_template('base.html')
 
 
 @app.route('/warning/<variable>', methods=["GET"])
